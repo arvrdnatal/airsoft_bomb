@@ -1,8 +1,8 @@
-import 'package:airsoft_bomb/main.dart';
+import 'package:airsoft_bomb/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-class AndroidApp extends StatelessWidget {
-  const AndroidApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class AndroidApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomePage(),
     );
   }
 }
