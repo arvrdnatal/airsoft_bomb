@@ -1,4 +1,4 @@
-import 'package:airsoft_bomb/ui/pages/main_app.dart';
+import 'package:airsoft_bomb/ui/screens/main_app.dart';
 import 'package:flutter/material.dart';
 
 void main() {
