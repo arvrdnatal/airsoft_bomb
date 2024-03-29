@@ -1,9 +1,9 @@
-import 'package:airsoft_bomb/ui/screens/main_app.dart';
+import 'package:airsoft_bomb/ui/android/android_app.dart';
+import 'package:airsoft_bomb/ui/ios/ios_app.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
-void main() {
-  runApp(const MainApp());
-}
+void main() => Platform.isAndroid ? runApp(const AndroidApp()) : runApp(const IosApp());
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
