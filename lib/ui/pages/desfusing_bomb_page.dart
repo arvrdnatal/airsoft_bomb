@@ -1,14 +1,14 @@
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:flutter/material.dart';
 
-class ArmingBombPage extends StatefulWidget {
-  const ArmingBombPage({super.key});
+class DefusingBombPage extends StatefulWidget {
+  const DefusingBombPage({super.key});
 
   @override
-  State<ArmingBombPage> createState() => _ArmingBombPageState();
+  State<DefusingBombPage> createState() => _DefusingBombPageState();
 }
 
-class _ArmingBombPageState extends State<ArmingBombPage> {
+class _DefusingBombPageState extends State<DefusingBombPage> {
   @override
   Widget build(BuildContext context) {
     var sentences = context.getSentences();
@@ -23,8 +23,9 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(sentences.arming_bomb_page__title),
-                      Text(sentences.arming_bomb_page__counter(5))
+                      Text(sentences.defusing_bomb_page__title),
+                      const Text("00:00"),
+                      Text(sentences.defusing_bomb_page__counter(4))
                     ],
                   )
               ),
@@ -38,7 +39,7 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                         elevation: 5.0,
                         fillColor: Colors.redAccent,
                         shape: const CircleBorder(),
-                        child: Text(sentences.arming_bomb_page__arm_btn),
+                        child: Text(sentences.defusing_bomb_page__defuse_btn),
                       ),
                     ),
                   )

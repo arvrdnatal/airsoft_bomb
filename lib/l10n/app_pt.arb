@@ -19,5 +19,16 @@
         "example": "1"
       }
     }
+  },
+
+  "defusing_bomb_page__title": "Desarmar a bomba",
+  "defusing_bomb_page__defuse_btn": "Desarmar",
+  "defusing_bomb_page__counter": "Tempo de desarme: {seconds, plural, =1{{seconds} segundo} other{{seconds} segundos}}",
+  "@defusing_bomb_page__counter": {
+    "placeholders": {
+      "seconds": {
+        "example": "1"
+      }
+    }
   }
 }

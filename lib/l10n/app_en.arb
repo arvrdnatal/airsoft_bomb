@@ -19,5 +19,16 @@
         "example": "1"
       }
     }
+  },
+
+  "defusing_bomb_page__title": "Defuse the bomb",
+  "defusing_bomb_page__defuse_btn": "Defuse",
+  "defusing_bomb_page__counter": "{seconds, plural, =1{{seconds} second} other{{seconds} seconds}}",
+  "@defusing_bomb_page__counter": {
+    "placeholders": {
+      "seconds": {
+        "example": "1"
+      }
+    }
   }
 }
