@@ -1,6 +1,6 @@
+import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -9,8 +9,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: context.getLocationsDelegates(),
+      supportedLocales: context.getSuportedLocales(),
       theme: ThemeData(
         useMaterial3: true,
       ),

@@ -1,8 +1,8 @@
 {
   "@@locale": "pt",
 
-  "helloWorld": "Poraaaaaaaaaaa",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "main_title": "AIRSOFT BOMB",
+
+  "home_page__start_btn": "Começar",
+  "home_page__settings_btn": "Configurações"
 }
