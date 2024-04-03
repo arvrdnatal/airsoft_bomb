@@ -4,5 +4,16 @@
   "main_title": "AIRSOFT BOMB",
 
   "home_page__start_btn": "Start",
-  "home_page__settings_btn": "Settings"
+  "home_page__settings_btn": "Settings",
+
+  "arming_bomb_page__title": "Arm the bomb",
+  "arming_bomb_page__arm_btn": "Arm",
+  "arming_bomb_page__counter": "{seconds, plural, =1{{seconds} second} other{{seconds} seconds}}",
+  "@arming_bomb_page__counter": {
+    "placeholders": {
+      "seconds": {
+        "example": "1"
+      }
+    }
+  }
 }
