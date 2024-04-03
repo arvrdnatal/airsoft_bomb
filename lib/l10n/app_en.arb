@@ -30,5 +30,9 @@
         "example": "1"
       }
     }
-  }
+  },
+
+  "bomb_result_page__success_title": "Congratulations, you've successfully defused the bomb!",
+  "bomb_result_page__fail_title": "Too bad you couldn't defuse the bomb in time.",
+  "bomb_result_page__back_to_home_btn": "Back to home"
 }
