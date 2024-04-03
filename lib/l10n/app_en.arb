@@ -6,6 +6,10 @@
   "home_page__start_btn": "Start",
   "home_page__settings_btn": "Settings",
 
+  "settings_page__to_arm_btn": "Set bomb arming time",
+  "settings_page__bomb_time_btn": "Set pump time",
+  "settings_page__to_defusal_btn": "Set bomb defusal time",
+
   "arming_bomb_page__title": "Arm the bomb",
   "arming_bomb_page__arm_btn": "Arm",
   "arming_bomb_page__counter": "{seconds, plural, =1{{seconds} second} other{{seconds} seconds}}",
