@@ -1,4 +1,5 @@
 import 'package:airsoft_bomb/l10n/app_translations.dart';
+import 'package:airsoft_bomb/ui/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class BombResultPage extends StatefulWidget {
@@ -21,11 +22,16 @@ class _BombResultPageState extends State<BombResultPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(widget.isSuccess ? sentences.bomb_result_page__success_title : sentences.bomb_result_page__fail_title),
-              ElevatedButton(onPressed: () {}, child: Text(sentences.bomb_result_page__back_to_home_btn))
+              ElevatedButton(onPressed: _tryAgain, child: Text(sentences.bomb_result_page__back_to_home_btn))
             ],
           ),
         ),
       ),
     );
   }
+
+  void _tryAgain() => Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+      (route) => false);
 }
