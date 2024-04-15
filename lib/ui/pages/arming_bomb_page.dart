@@ -1,5 +1,7 @@
+import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
 
 class ArmingBombPage extends StatefulWidget {
   const ArmingBombPage({super.key});
@@ -24,7 +26,7 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(sentences.arming_bomb_page__title),
-                      Text(sentences.arming_bomb_page__counter(5))
+                      Text(sentences.arming_bomb_page__counter(GlobalConfiguration().getValue(timeToArm)))
                     ],
                   )
               ),
