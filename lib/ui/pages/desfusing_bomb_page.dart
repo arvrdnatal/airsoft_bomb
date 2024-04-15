@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/bomb_result_page.dart';
 import 'package:airsoft_bomb/ui/widgets/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
+import 'package:intl/intl.dart';
 
 class DefusingBombPage extends StatefulWidget {
   const DefusingBombPage({super.key});
@@ -13,8 +16,17 @@ class DefusingBombPage extends StatefulWidget {
 }
 
 class _DefusingBombPageState extends State<DefusingBombPage> {
-  final _bombTime = GlobalConfiguration().getValue(bombTime);
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
+  late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
+  late String _remainingTime;
+
+  @override
+  void initState() {
+    super.initState();
+    final duration = Duration(seconds: _remainingSeconds);
+    _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
+    _startCountdown();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +44,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(sentences.defusing_bomb_page__title),
-                      const Text("00:00"),
+                      Text(_remainingTime),
                       Text(sentences.defusing_bomb_page__counter(4))
                     ],
                   )
@@ -54,6 +66,21 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
         ),
       ),
     );
+  }
+
+  void _startCountdown() {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingSeconds <= 0) {
+        setState(() { timer.cancel(); });
+        _explodeBomb();
+      } else {
+        setState(() {
+          _remainingSeconds--;
+          final duration = Duration(seconds: _remainingSeconds);
+          _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
+        });
+      }
+    });
   }
 
   void _defuseBomb() => Navigator.push(context,
