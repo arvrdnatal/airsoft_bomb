@@ -40,7 +40,7 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                     padding: const EdgeInsets.all(50.0),
                     child: MainButtonWidget(
                         time: _armingTime,
-                        onClickFunction: () => _activateBomb(),
+                        onClickFunction: _activateBomb,
                         text: sentences.arming_bomb_page__arm_btn
                     ),
                   )
