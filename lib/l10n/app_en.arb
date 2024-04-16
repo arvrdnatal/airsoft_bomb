@@ -9,6 +9,9 @@
   "settings_page__to_arm_btn": "Set bomb arming time",
   "settings_page__bomb_time_btn": "Set pump time",
   "settings_page__to_defusal_btn": "Set bomb defusal time",
+  "settings_page__dialog_title": "Set the time in seconds:",
+  "settings_page__dialog_confirm_btn": "OK",
+  "settings_page__dialog_cancel_btn": "Cancel",
 
   "arming_bomb_page__title": "Arm the bomb",
   "arming_bomb_page__arm_btn": "Arm",

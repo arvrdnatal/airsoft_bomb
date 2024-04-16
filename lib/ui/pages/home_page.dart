@@ -33,6 +33,6 @@ class HomePage extends StatelessWidget {
   );
 
   void _onSettingsButtonClicked(BuildContext context) => Navigator.push(
-      context, MaterialPageRoute(builder: (context) => SettingsPage())
+      context, MaterialPageRoute(builder: (context) => const SettingsPage())
   );
 }

@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.2.2
   global_configuration: ^2.0.0
   percent_indicator: ^4.2.3
+  numberpicker: ^2.1.2
 
 dev_dependencies:
   flutter_test:

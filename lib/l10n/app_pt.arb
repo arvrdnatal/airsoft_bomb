@@ -9,6 +9,9 @@
   "settings_page__to_arm_btn": "Definir tempo de armamento da bomba",
   "settings_page__bomb_time_btn": "Definir tempo da bomba",
   "settings_page__to_defusal_btn": "Definir tempo de desarmamento da bomba",
+  "settings_page__dialog_title": "Defina o tempo em segundos:",
+  "settings_page__dialog_confirm_btn": "OK",
+  "settings_page__dialog_cancel_btn": "Cancelar",
 
   "arming_bomb_page__title": "Armar a bomba",
   "arming_bomb_page__arm_btn": "Armar",
