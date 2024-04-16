@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class MainButtonWidget extends StatefulWidget {
-  const MainButtonWidget({super.key, required this.time, required this.onClickFunction, required this.text});
+  const MainButtonWidget(
+      {super.key,
+      required this.time,
+      required this.onClickFunction,
+      required this.text,
+      required this.color});
 
   final int time;
   final String text;
   final Function() onClickFunction;
+  final Color color;
 
   @override
   State<MainButtonWidget> createState() => _MainButtonWidgetState();
@@ -27,8 +33,8 @@ class _MainButtonWidgetState extends State<MainButtonWidget> {
       child: CircularPercentIndicator(
         center: Container(
           alignment: AlignmentDirectional.center,
-          decoration: const BoxDecoration(
-            color: Colors.redAccent,
+          decoration: BoxDecoration(
+            color: widget.color,
             shape: BoxShape.circle
           ),
           child: Text(widget.text),

@@ -57,7 +57,8 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                       child: MainButtonWidget(
                           time: _defusingTime,
                           onClickFunction: _defuseBomb,
-                          text: sentences.defusing_bomb_page__defuse_btn),
+                          text: sentences.defusing_bomb_page__defuse_btn,
+                          color: Colors.blueAccent),
                     ),
                   )
               )

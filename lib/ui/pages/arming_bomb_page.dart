@@ -39,9 +39,10 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                   child: Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: MainButtonWidget(
-                        time: _armingTime,
-                        onClickFunction: _activateBomb,
-                        text: sentences.arming_bomb_page__arm_btn
+                      time: _armingTime,
+                      onClickFunction: _activateBomb,
+                      text: sentences.arming_bomb_page__arm_btn,
+                      color: Colors.redAccent,
                     ),
                   )
               )
