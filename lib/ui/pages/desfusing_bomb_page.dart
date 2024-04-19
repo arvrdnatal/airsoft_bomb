@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/bomb_result_page.dart';
+import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
 import 'package:airsoft_bomb/ui/widgets/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -16,6 +17,7 @@ class DefusingBombPage extends StatefulWidget {
 }
 
 class _DefusingBombPageState extends State<DefusingBombPage> {
+  final _playSoundUtil = PlaySoundUtil("lib/assets/audio/bomb_planted.mp3");
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;
@@ -23,6 +25,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   @override
   void initState() {
     super.initState();
+    _playSoundUtil.playSound();
     final duration = Duration(seconds: _remainingSeconds);
     _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
     _startCountdown();
@@ -45,7 +48,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                     children: [
                       Text(sentences.defusing_bomb_page__title),
                       Text(_remainingTime),
-                      Text(sentences.defusing_bomb_page__counter(4))
+                      Text(sentences.defusing_bomb_page__counter(_defusingTime))
                     ],
                   )
               ),

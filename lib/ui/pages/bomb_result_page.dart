@@ -1,5 +1,6 @@
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/home_page.dart';
+import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
 import 'package:flutter/material.dart';
 
 class BombResultPage extends StatefulWidget {
@@ -12,6 +13,14 @@ class BombResultPage extends StatefulWidget {
 }
 
 class _BombResultPageState extends State<BombResultPage> {
+  final _playSoundUtil = PlaySoundUtil("lib/assets/audio/bomb_defused.mp3");
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.isSuccess) _playSoundUtil.playSound();
+  }
+
   @override
   Widget build(BuildContext context) {
     var sentences = context.getSentences();

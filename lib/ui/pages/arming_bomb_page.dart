@@ -1,6 +1,7 @@
 import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/desfusing_bomb_page.dart';
+import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
 import 'package:airsoft_bomb/ui/widgets/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -14,6 +15,13 @@ class ArmingBombPage extends StatefulWidget {
 
 class _ArmingBombPageState extends State<ArmingBombPage> {
   final _armingTime = GlobalConfiguration().getValue(timeToArm);
+  final _playSoundUtil = PlaySoundUtil("lib/assets/audio/move_out.mp3");
+
+  @override
+  void initState() {
+    super.initState();
+    _playSoundUtil.playSound();
+  }
 
   @override
   Widget build(BuildContext context) {
