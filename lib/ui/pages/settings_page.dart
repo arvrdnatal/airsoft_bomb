@@ -19,6 +19,8 @@ class _SettingsPageState extends State<SettingsPage> {
   late int _currentBombInt = GlobalConfiguration().getValue(bombTime);
   late int _currentToDefuseInt = GlobalConfiguration().getValue(timeToDefuse);
 
+  late bool _currentCheckbox = GlobalConfiguration().getValue(specialExplosion);
+
   @override
   Widget build(BuildContext context) {
     var sentences = context.getSentences();
@@ -37,11 +39,29 @@ class _SettingsPageState extends State<SettingsPage> {
               ElevatedButton(
                   onPressed: () => _onSettingButtonClicked(context, SettingsType.toDefuse),
                   child: Text(sentences.settings_page__to_defusal_btn)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Checkbox(value: _currentCheckbox, onChanged: (_) => _onChangeCheckbox()),
+                  // Text(sentences.settings_page__special_explosion_checkbox)
+                ],
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _onChangeCheckbox() async {
+    (await _preferences)
+        .setBool(specialExplosion, !_currentCheckbox)
+        .whenComplete(() {
+      GlobalConfiguration().updateValue(specialExplosion, !_currentCheckbox);
+      setState(() {
+        _currentCheckbox = !_currentCheckbox;
+      });
+    });
   }
 
   Future<void> _onSettingButtonClicked(BuildContext context, SettingsType type) async {

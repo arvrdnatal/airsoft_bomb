@@ -11,6 +11,7 @@ void main() async {
     globalSettings.update(timeToArm, (value) => preferences.getInt(timeToArm) ?? value);
     globalSettings.update(bombTime, (value) => preferences.getInt(bombTime) ?? value);
     globalSettings.update(timeToDefuse, (value) => preferences.getInt(timeToDefuse) ?? value);
+    globalSettings.update(specialExplosion, (value) => preferences.getBool(specialExplosion) ?? value);
     GlobalConfiguration().loadFromMap(globalSettings);
   }).onError((error, stackTrace) {
     GlobalConfiguration().loadFromMap(globalSettings);

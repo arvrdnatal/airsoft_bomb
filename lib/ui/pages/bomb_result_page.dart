@@ -1,7 +1,9 @@
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/home_page.dart';
 import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
 import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
 
 class BombResultPage extends StatefulWidget {
   const BombResultPage({super.key, required this.isSuccess});
@@ -13,9 +15,13 @@ class BombResultPage extends StatefulWidget {
 }
 
 class _BombResultPageState extends State<BombResultPage> {
-  final _defusingSoundPath = "lib/assets/audio/bomb_defused.mp3";
-  final _explosionSoundPath = "lib/assets/audio/explosion.mp3";
+  final _defusingSoundPath = "audio/bomb_defused.mp3";
+  final _explosionSoundPath = "audio/explosion.mp3";
+  final _specialExplosionSoundPath = "audio/special_explosion.mp3";
+
   final _playSoundUtil = PlaySoundUtil();
+
+  final _specialExplosionSound = GlobalConfiguration().getValue(specialExplosion);
 
   @override
   void initState() {
@@ -23,7 +29,11 @@ class _BombResultPageState extends State<BombResultPage> {
     if (widget.isSuccess) {
       _playSoundUtil.setPath(_defusingSoundPath);
     } else {
-      _playSoundUtil.setPath(_explosionSoundPath);
+      if (_specialExplosionSound) {
+        _playSoundUtil.setPath(_specialExplosionSoundPath);
+      } else {
+        _playSoundUtil.setPath(_explosionSoundPath);
+      }
     }
     _playSoundUtil.playSound();
   }

@@ -15,10 +15,6 @@ class PlaySoundUtil {
   void playSound({Function? whenCompleted}) {
     _path?.let((path) async {
       await player.play(AssetSource(path));
-      // int soundId = await rootBundle.load(path).then((ByteData soundData) {
-      //   return _pool.load(soundData);
-      // });
-      // await _pool.play(soundId);
 
       // Timer.periodic(const Duration(seconds: 1), (timer) {
       //   if (_remainingSeconds <= 0) {

@@ -18,9 +18,9 @@ class DefusingBombPage extends StatefulWidget {
 
 class _DefusingBombPageState extends State<DefusingBombPage> {
   final _playSoundUtil = PlaySoundUtil();
-  final _catchPhraseSoundPath = "lib/assets/audio/bomb_planted.mp3";
-  final _bombDefaultSoundPath = "lib/assets/audio/bomb_activated_default.mp3";
-  final _bombFastSoundPath = "lib/assets/audio/bomb_activated_default.mp3";
+  final _catchPhraseSoundPath = "audio/bomb_planted.mp3";
+  final _bombDefaultSoundPath = "audio/bomb_activated_default.mp3";
+  final _bombFastSoundPath = "audio/bomb_activated_default.mp3";
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;
@@ -31,11 +31,12 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
     _playSoundUtil.setPath(_catchPhraseSoundPath);
     _playSoundUtil.playSound(
       whenCompleted: () {
-        final duration = Duration(seconds: _remainingSeconds);
-        _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
-        _startCountdown();
+
       }
     );
+    final duration = Duration(seconds: _remainingSeconds);
+    _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
+    _startCountdown();
   }
 
   @override
