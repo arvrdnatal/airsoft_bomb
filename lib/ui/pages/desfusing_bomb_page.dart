@@ -35,37 +35,40 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   Widget build(BuildContext context) {
     var sentences = context.getSentences();
 
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(sentences.defusing_bomb_page__title),
-                      Text(_remainingTime),
-                      Text(sentences.defusing_bomb_page__counter(_defusingTime))
-                    ],
-                  )
-              ),
-              Expanded(
-                  flex: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.all(50.0),
-                    child: SizedBox.expand(
-                      child: MainButtonWidget(
-                          time: _defusingTime,
-                          onClickFunction: _defuseBomb,
-                          text: sentences.defusing_bomb_page__defuse_btn,
-                          color: Colors.blueAccent),
-                    ),
-                  )
-              )
-            ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(sentences.defusing_bomb_page__title),
+                        Text(_remainingTime),
+                        Text(sentences.defusing_bomb_page__counter(_defusingTime))
+                      ],
+                    )
+                ),
+                Expanded(
+                    flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.all(50.0),
+                      child: SizedBox.expand(
+                        child: MainButtonWidget(
+                            time: _defusingTime,
+                            onClickFunction: _defuseBomb,
+                            text: sentences.defusing_bomb_page__defuse_btn,
+                            color: Colors.blueAccent),
+                      ),
+                    )
+                )
+              ],
+            ),
           ),
         ),
       ),
