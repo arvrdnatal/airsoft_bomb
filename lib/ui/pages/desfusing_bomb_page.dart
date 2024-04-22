@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/bomb_result_page.dart';
 import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
@@ -17,7 +17,10 @@ class DefusingBombPage extends StatefulWidget {
 }
 
 class _DefusingBombPageState extends State<DefusingBombPage> {
-  final _playSoundUtil = PlaySoundUtil.withPath("lib/assets/audio/bomb_planted.mp3");
+  final _playSoundUtil = PlaySoundUtil();
+  final _catchPhraseSoundPath = "lib/assets/audio/bomb_planted.mp3";
+  final _bombDefaultSoundPath = "lib/assets/audio/bomb_activated_default.mp3";
+  final _bombFastSoundPath = "lib/assets/audio/bomb_activated_default.mp3";
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;
@@ -25,10 +28,14 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   @override
   void initState() {
     super.initState();
-    _playSoundUtil.playSound();
-    final duration = Duration(seconds: _remainingSeconds);
-    _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
-    _startCountdown();
+    _playSoundUtil.setPath(_catchPhraseSoundPath);
+    _playSoundUtil.playSound(
+      whenCompleted: () {
+        final duration = Duration(seconds: _remainingSeconds);
+        _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
+        _startCountdown();
+      }
+    );
   }
 
   @override
@@ -76,12 +83,18 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   }
 
   void _startCountdown() {
+    if (_remainingSeconds > 10) {
+      _playSoundUtil.setPath(_bombDefaultSoundPath);
+    } else {
+      _playSoundUtil.setPath(_bombFastSoundPath);
+    }
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds <= 0) {
         setState(() { timer.cancel(); });
         _explodeBomb();
       } else {
         setState(() {
+          _playSoundUtil.playSound();
           _remainingSeconds--;
           final duration = Duration(seconds: _remainingSeconds);
           _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));

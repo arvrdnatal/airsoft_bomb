@@ -1,4 +1,4 @@
-import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/pages/desfusing_bomb_page.dart';
 import 'package:airsoft_bomb/ui/util/play_sound_util.dart';
@@ -15,7 +15,7 @@ class ArmingBombPage extends StatefulWidget {
 
 class _ArmingBombPageState extends State<ArmingBombPage> {
   final _armingTime = GlobalConfiguration().getValue(timeToArm);
-  final _playSoundUtil = PlaySoundUtil.withPath("lib/assets/audio/move_out.mp3");
+  final _playSoundUtil = PlaySoundUtil.withPath("audio/move_out.mp3");
 
   @override
   void initState() {

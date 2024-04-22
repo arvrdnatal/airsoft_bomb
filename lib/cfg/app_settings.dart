@@ -1,4 +1,4 @@
-import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 
 const globalSettings = {
   timeToArm: 5,

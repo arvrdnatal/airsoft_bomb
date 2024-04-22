@@ -1,4 +1,4 @@
-import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/widgets/main_number_picker_widget.dart';
 import 'package:flutter/material.dart';

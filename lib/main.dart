@@ -1,5 +1,5 @@
-import 'package:airsoft_bomb/assets/cfg/app_settings.dart';
-import 'package:airsoft_bomb/assets/cfg/global_keys_settings.dart';
+import 'package:airsoft_bomb/cfg/app_settings.dart';
+import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/ui/pages/main_app.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
