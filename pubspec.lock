@@ -157,6 +157,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
+  kotlin_flavor:
+    dependency: "direct main"
+    description:
+      name: kotlin_flavor
+      sha256: "498e41ae26cc47288fd2733ca795a481beb37f9f88f2df0e756475b0378e6ae2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   lints:
     dependency: transitive
     description:

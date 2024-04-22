@@ -17,7 +17,7 @@ class DefusingBombPage extends StatefulWidget {
 }
 
 class _DefusingBombPageState extends State<DefusingBombPage> {
-  final _playSoundUtil = PlaySoundUtil("lib/assets/audio/bomb_planted.mp3");
+  final _playSoundUtil = PlaySoundUtil.withPath("lib/assets/audio/bomb_planted.mp3");
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;

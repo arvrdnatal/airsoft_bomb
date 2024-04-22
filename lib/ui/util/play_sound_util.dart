@@ -1,18 +1,29 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:kotlin_flavor/scope_functions.dart';
 import 'package:soundpool/soundpool.dart';
 
 class PlaySoundUtil {
   final Soundpool _pool = Soundpool.fromOptions();
-  late String _path = "";
+  late String? _path;
 
-  PlaySoundUtil(String path) {
+  PlaySoundUtil();
+
+  PlaySoundUtil.withPath(String path) {
     _path = path;
   }
 
-  Future<void> playSound() async {
-    int soundId = await rootBundle.load(_path).then((ByteData soundData) {
-      return _pool.load(soundData);
+  void playSound() {
+    _path?.let((path) async {
+      int soundId = await rootBundle.load(path).then((ByteData soundData) {
+        return _pool.load(soundData);
+      });
+      await _pool.play(soundId);
+    }) ?? run(() {
+      if (kDebugMode) print("O path não pode ser nulo");
+      return null;
     });
-    await _pool.play(soundId);
   }
+
+  void setPath(String path) => _path = path;
 }

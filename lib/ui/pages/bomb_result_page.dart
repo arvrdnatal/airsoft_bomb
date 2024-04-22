@@ -13,12 +13,19 @@ class BombResultPage extends StatefulWidget {
 }
 
 class _BombResultPageState extends State<BombResultPage> {
-  final _playSoundUtil = PlaySoundUtil("lib/assets/audio/bomb_defused.mp3");
+  final _defusingSoundPath = "lib/assets/audio/bomb_defused.mp3";
+  final _explosionSoundPath = "lib/assets/audio/explosion.mp3";
+  final _playSoundUtil = PlaySoundUtil();
 
   @override
   void initState() {
     super.initState();
-    if (widget.isSuccess) _playSoundUtil.playSound();
+    if (widget.isSuccess) {
+      _playSoundUtil.setPath(_defusingSoundPath);
+    } else {
+      _playSoundUtil.setPath(_explosionSoundPath);
+    }
+    _playSoundUtil.playSound();
   }
 
   @override
