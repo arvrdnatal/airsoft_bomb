@@ -12,23 +12,11 @@ class PlaySoundUtil {
     _path = path;
   }
 
-  void playSound({Function? whenCompleted}) {
+  void playSound({Function? whenCompleted, double rate = 1.0}) {
     _path?.let((path) async {
+      await player.setPlaybackRate(rate);
       await player.play(AssetSource(path));
-
-      // Timer.periodic(const Duration(seconds: 1), (timer) {
-      //   if (_remainingSeconds <= 0) {
-      //     setState(() { timer.cancel(); });
-      //     _explodeBomb();
-      //   } else {
-      //     setState(() {
-      //       _playSoundUtil.playSound();
-      //       _remainingSeconds--;
-      //       final duration = Duration(seconds: _remainingSeconds);
-      //       _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
-      //     });
-      //   }
-      // });
+      whenCompleted?.let((self) => player.onPlayerComplete.listen((event) => self()));
     }) ?? run(() {
       if (kDebugMode) print("O path não pode ser nulo");
       return null;

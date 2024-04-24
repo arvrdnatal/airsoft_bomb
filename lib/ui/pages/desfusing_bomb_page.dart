@@ -20,7 +20,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   final _playSoundUtil = PlaySoundUtil();
   final _catchPhraseSoundPath = "audio/bomb_planted.mp3";
   final _bombDefaultSoundPath = "audio/bomb_activated_default.mp3";
-  final _bombFastSoundPath = "audio/bomb_activated_default.mp3";
+  final _bombFastSoundPath = "audio/bomb_activated_fast.mp3";
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;
@@ -28,15 +28,13 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   @override
   void initState() {
     super.initState();
+    _formatRemainingTime();
     _playSoundUtil.setPath(_catchPhraseSoundPath);
     _playSoundUtil.playSound(
       whenCompleted: () {
-
+        _startCountdown();
       }
     );
-    final duration = Duration(seconds: _remainingSeconds);
-    _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
-    _startCountdown();
   }
 
   @override
@@ -84,29 +82,32 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   }
 
   void _startCountdown() {
-    if (_remainingSeconds > 10) {
+    // if (_remainingSeconds > 10) {
       _playSoundUtil.setPath(_bombDefaultSoundPath);
-    } else {
-      _playSoundUtil.setPath(_bombFastSoundPath);
-    }
+    // } else {
+    //   _playSoundUtil.setPath(_bombFastSoundPath);
+    // }
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds <= 0) {
-        setState(() { timer.cancel(); });
+        timer.cancel();
         _explodeBomb();
       } else {
-        setState(() {
-          _playSoundUtil.playSound();
-          _remainingSeconds--;
-          final duration = Duration(seconds: _remainingSeconds);
-          _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
-        });
+        timer.cancel();
+        _playSoundUtil.playSound();
+        setState(() => _remainingSeconds--);
+        _formatRemainingTime();
       }
     });
   }
 
+  void _formatRemainingTime() {
+    final duration = Duration(seconds: _remainingSeconds);
+    _remainingTime = DateFormat("mm:ss").format(DateTime.fromMicrosecondsSinceEpoch(duration.inMicroseconds));
+  }
   void _defuseBomb() => Navigator.push(context,
       MaterialPageRoute(builder: (context) => const BombResultPage(isSuccess: true)));
 
   void _explodeBomb() => Navigator.push(context,
       MaterialPageRoute(builder: (context) => const BombResultPage(isSuccess: false)));
 }
+

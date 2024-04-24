@@ -26,15 +26,11 @@ class _BombResultPageState extends State<BombResultPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.isSuccess) {
-      _playSoundUtil.setPath(_defusingSoundPath);
-    } else {
-      if (_specialExplosionSound) {
-        _playSoundUtil.setPath(_specialExplosionSoundPath);
-      } else {
-        _playSoundUtil.setPath(_explosionSoundPath);
-      }
-    }
+    (widget.isSuccess)
+        ? _playSoundUtil.setPath(_defusingSoundPath)
+        : (_specialExplosionSound)
+            ? _playSoundUtil.setPath(_specialExplosionSoundPath)
+            : _playSoundUtil.setPath(_explosionSoundPath);
     _playSoundUtil.playSound();
   }
 
