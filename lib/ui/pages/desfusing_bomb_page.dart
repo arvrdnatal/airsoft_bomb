@@ -60,9 +60,9 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(sentences.defusing_bomb_page__title),
+                        Text(sentences.defusing_bomb_page__title, style: Theme.of(context).textTheme.displaySmall),
                         Text(_remainingTime, style: Theme.of(context).textTheme.displayLarge),
-                        Text(sentences.defusing_bomb_page__counter(_defusingTime))
+                        Text(sentences.defusing_bomb_page__counter(_defusingTime), style: Theme.of(context).textTheme.bodyLarge)
                       ],
                     )
                 ),

@@ -43,8 +43,8 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(sentences.arming_bomb_page__title),
-                    Text(sentences.arming_bomb_page__counter(_armingTime)),
+                    Text(sentences.arming_bomb_page__title, style: Theme.of(context).textTheme.displaySmall),
+                    Text(sentences.arming_bomb_page__counter(_armingTime), style: Theme.of(context).textTheme.bodyLarge),
                   ],
                 )
               ),

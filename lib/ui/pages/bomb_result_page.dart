@@ -56,9 +56,12 @@ class _BombResultPageState extends State<BombResultPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.isSuccess
-                    ? sentences.bomb_result_page__success_title
-                    : sentences.bomb_result_page__fail_title),
+                Text(
+                    widget.isSuccess
+                        ? sentences.bomb_result_page__success_title
+                        : sentences.bomb_result_page__fail_title,
+                    style: Theme.of(context).textTheme.displaySmall,
+                    textAlign: TextAlign.center),
                 ElevatedButton(
                     onPressed: _tryAgain,
                     child: Text(sentences.bomb_result_page__back_to_home_btn))

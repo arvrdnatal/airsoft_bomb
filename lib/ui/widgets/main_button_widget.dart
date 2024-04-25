@@ -37,7 +37,7 @@ class _MainButtonWidgetState extends State<MainButtonWidget> {
             color: widget.color,
             shape: BoxShape.circle
           ),
-          child: Text(widget.text),
+          child: Text(widget.text, style: Theme.of(context).textTheme.displaySmall),
         ),
         radius: 140,
         lineWidth: 10,
