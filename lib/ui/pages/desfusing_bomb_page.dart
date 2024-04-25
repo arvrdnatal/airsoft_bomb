@@ -61,7 +61,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(sentences.defusing_bomb_page__title),
-                        Text(_remainingTime),
+                        Text(_remainingTime, style: Theme.of(context).textTheme.displayLarge),
                         Text(sentences.defusing_bomb_page__counter(_defusingTime))
                       ],
                     )
@@ -94,12 +94,12 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
       if (_isBombDefused) {
         _defuseBomb();
       } else {
-        if (_remainingSeconds <= 0) {
+        if (_remainingSeconds <= 1) {
           _explodeBomb();
         } else {
-          _playSoundUtil.playSound();
           setState(() => _remainingSeconds--);
           _formatRemainingTime();
+          _playSoundUtil.playSound();
         }
       }
     });
