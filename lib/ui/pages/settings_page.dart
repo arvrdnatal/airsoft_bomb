@@ -1,3 +1,4 @@
+import 'package:airsoft_bomb/cfg/app_settings.dart';
 import 'package:airsoft_bomb/cfg/global_keys_settings.dart';
 import 'package:airsoft_bomb/l10n/app_translations.dart';
 import 'package:airsoft_bomb/ui/widgets/main_number_picker_widget.dart';
@@ -91,8 +92,8 @@ class _SettingsPageState extends State<SettingsPage> {
     };
 
     return MainNumberPickerWidget(
-        minValue: 1,
-        maxValue: 100,
+        minValue: globalSettings[map.key] as int,
+        maxValue: 7200,
         currentValue: map.value.key,
         onChange: (n) async {
           (await _preferences).setInt(map.key, n).whenComplete(
