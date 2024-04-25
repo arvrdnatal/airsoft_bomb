@@ -90,15 +90,13 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   void _startCountdown() {
     _playSoundUtil.setPath(_bombDefaultSoundPath);
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (!_isBombDefused) {
-        timer.cancel();
+      timer.cancel();
+      if (_isBombDefused) {
         _defuseBomb();
       } else {
         if (_remainingSeconds <= 0) {
-          timer.cancel();
           _explodeBomb();
         } else {
-          timer.cancel();
           _playSoundUtil.playSound();
           setState(() => _remainingSeconds--);
           _formatRemainingTime();

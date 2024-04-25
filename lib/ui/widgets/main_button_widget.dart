@@ -55,12 +55,12 @@ class _MainButtonWidgetState extends State<MainButtonWidget> {
   void _startCountdown() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds <= 0) {
-        setState(() { timer.cancel(); });
+        timer.cancel();
         widget.onClickFunction();
       } else {
         setState(() {
           _remainingSeconds--;
-          setState(() { _percent += (100 / widget.time) / 100; });
+          _percent += (100 / widget.time) / 100;
         });
       }
     });
