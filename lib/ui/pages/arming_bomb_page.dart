@@ -56,7 +56,7 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
                       time: _armingTime,
                       onClickFunction: _activateBomb,
                       text: sentences.arming_bomb_page__arm_btn,
-                      color: Colors.redAccent,
+                      color: Theme.of(context).colorScheme.onError,
                     ),
                   )
               )

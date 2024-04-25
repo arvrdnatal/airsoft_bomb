@@ -12,8 +12,10 @@ class MainApp extends StatelessWidget {
       localizationsDelegates: context.getLocationsDelegates(),
       supportedLocales: context.getSuportedLocales(),
       theme: ThemeData(
-        useMaterial3: true,
-      ),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color.fromRGBO(216, 168, 0, 1),
+              brightness: Brightness.dark)),
       home: const HomePage(),
     );
   }

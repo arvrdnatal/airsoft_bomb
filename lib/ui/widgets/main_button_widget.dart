@@ -41,8 +41,8 @@ class _MainButtonWidgetState extends State<MainButtonWidget> {
         ),
         radius: 140,
         lineWidth: 10,
-        backgroundColor: Colors.blueGrey.shade200,
-        progressColor: Colors.blueGrey.shade400,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        progressColor: Theme.of(context).colorScheme.onSecondary,
         circularStrokeCap: CircularStrokeCap.round,
         animation: true,
         animateFromLastPercent: true,
@@ -54,7 +54,7 @@ class _MainButtonWidgetState extends State<MainButtonWidget> {
 
   void _startCountdown() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_remainingSeconds <= 0) {
+      if (_remainingSeconds <= 1) {
         timer.cancel();
         widget.onClickFunction();
       } else {

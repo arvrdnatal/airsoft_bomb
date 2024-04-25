@@ -75,7 +75,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                             time: _defusingTime,
                             onClickFunction: () => _isBombDefused = true,
                             text: sentences.defusing_bomb_page__defuse_btn,
-                            color: Colors.blueAccent),
+                            color: Theme.of(context).colorScheme.inversePrimary),
                       ),
                     )
                 )
