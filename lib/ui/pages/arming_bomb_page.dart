@@ -24,6 +24,12 @@ class _ArmingBombPageState extends State<ArmingBombPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _playSoundUtil.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var sentences = context.getSentences();
     return Scaffold(

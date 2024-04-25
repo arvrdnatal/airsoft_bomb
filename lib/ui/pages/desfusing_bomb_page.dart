@@ -20,8 +20,8 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   final _playSoundUtil = PlaySoundUtil();
   final _catchPhraseSoundPath = "audio/bomb_planted.mp3";
   final _bombDefaultSoundPath = "audio/bomb_activated_default.mp3";
-  final _bombFastSoundPath = "audio/bomb_activated_fast.mp3";
   final _defusingTime = GlobalConfiguration().getValue(timeToDefuse);
+  late bool _isBombDefused = false;
   late int _remainingSeconds = GlobalConfiguration().getValue(bombTime);
   late String _remainingTime;
 
@@ -35,6 +35,12 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
         _startCountdown();
       }
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _playSoundUtil.dispose();
   }
 
   @override
@@ -67,7 +73,7 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
                       child: SizedBox.expand(
                         child: MainButtonWidget(
                             time: _defusingTime,
-                            onClickFunction: _defuseBomb,
+                            onClickFunction: () => _isBombDefused = true,
                             text: sentences.defusing_bomb_page__defuse_btn,
                             color: Colors.blueAccent),
                       ),
@@ -82,20 +88,21 @@ class _DefusingBombPageState extends State<DefusingBombPage> {
   }
 
   void _startCountdown() {
-    // if (_remainingSeconds > 10) {
-      _playSoundUtil.setPath(_bombDefaultSoundPath);
-    // } else {
-    //   _playSoundUtil.setPath(_bombFastSoundPath);
-    // }
+    _playSoundUtil.setPath(_bombDefaultSoundPath);
     Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_remainingSeconds <= 0) {
+      if (!_isBombDefused) {
         timer.cancel();
-        _explodeBomb();
+        _defuseBomb();
       } else {
-        timer.cancel();
-        _playSoundUtil.playSound();
-        setState(() => _remainingSeconds--);
-        _formatRemainingTime();
+        if (_remainingSeconds <= 0) {
+          timer.cancel();
+          _explodeBomb();
+        } else {
+          timer.cancel();
+          _playSoundUtil.playSound();
+          setState(() => _remainingSeconds--);
+          _formatRemainingTime();
+        }
       }
     });
   }

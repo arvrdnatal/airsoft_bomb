@@ -17,21 +17,32 @@ class BombResultPage extends StatefulWidget {
 class _BombResultPageState extends State<BombResultPage> {
   final _defusingSoundPath = "audio/bomb_defused.mp3";
   final _explosionSoundPath = "audio/explosion.mp3";
-  final _specialExplosionSoundPath = "audio/special_explosion.mp3";
+  final _specialSoundPath = "audio/special_explosion.mp3";
 
   final _playSoundUtil = PlaySoundUtil();
 
-  final _specialExplosionSound = GlobalConfiguration().getValue(specialExplosion);
+  final _hasSpecialSound = GlobalConfiguration().getValue(specialExplosion);
 
   @override
   void initState() {
     super.initState();
     (widget.isSuccess)
         ? _playSoundUtil.setPath(_defusingSoundPath)
-        : (_specialExplosionSound)
-            ? _playSoundUtil.setPath(_specialExplosionSoundPath)
-            : _playSoundUtil.setPath(_explosionSoundPath);
-    _playSoundUtil.playSound();
+        :  _playSoundUtil.setPath(_explosionSoundPath);
+    _playSoundUtil.playSound(
+      whenCompleted: () {
+        if (_hasSpecialSound) {
+          _playSoundUtil.setPath(_specialSoundPath);
+          _playSoundUtil.playSound(whenCompleted: () => _playSoundUtil.dispose());
+        }
+      }
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _playSoundUtil.dispose();
   }
 
   @override
