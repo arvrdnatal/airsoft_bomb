@@ -47,6 +47,7 @@ dependencies:
   soundpool: ^2.4.1
   kotlin_flavor: ^0.2.0
   audioplayers: ^5.2.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +60,27 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  image_path_android: "assets/icons/app_icon.png"
+  adaptive_icon_background: "#D8A800"
+  adaptive_icon_foreground: "assets/icons/app_icon.png"
+  min_sdk_android: 16 # android min sdk min:16, default 21
+#  web:
+#    generate: true
+#    image_path: "path/to/image.png"
+#    background_color: "#hexcode"
+#    theme_color: "#hexcode"
+#  windows:
+#    generate: true
+#    image_path: "path/to/image.png"
+#    icon_size: 48 # min:48, max:256, default: 48
+#  macos:
+#    generate: true
+#    image_path: "path/to/image.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -69,6 +91,7 @@ flutter:
   assets:
     - lib/cfg/app_settings.dart
     # SOUNDS
+    - assets/icons/app_icon.png
     - assets/audio/move_out.mp3
     - assets/audio/bomb_defused.mp3
     - assets/audio/bomb_planted.mp3
